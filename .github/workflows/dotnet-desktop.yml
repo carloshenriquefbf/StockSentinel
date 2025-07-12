@@ -9,8 +9,10 @@ on:
 jobs:
 
   build:
-    runs-on: windows-latest  
-
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        runtime: [win-x64, linux-x64, osx-x64]
     steps:
     - name: Checkout
       uses: actions/checkout@v4
@@ -18,8 +20,13 @@ jobs:
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
-  
+        dotnet-version: 9.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
     - name: Execute unit tests
-      run: dotnet test
-      
+      run: dotnet test --configuration Release
+
+    - name: Build and Publish
+      run: dotnet publish src/StockSentinel/StockSentinel.csproj -c Release -r ${{ matrix.runtime }} --self-contained true -p:PublishSingleFile=true -p:UseAppHost=true -p:IncludeNativeLibrariesForSelfExtract=true
