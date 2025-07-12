@@ -3,6 +3,7 @@ name: .NET Core Desktop
 on:
   push:
     branches: [ "main" ]
+    tags: [ "v*" ]
   pull_request:
     branches: [ "main" ]
 
@@ -28,5 +29,54 @@ jobs:
     - name: Execute unit tests
       run: dotnet test --configuration Release
 
-    - name: Build and Publish
-      run: dotnet publish src/StockSentinel/StockSentinel.csproj -c Release -r ${{ matrix.runtime }} --self-contained true -p:PublishSingleFile=true -p:UseAppHost=true -p:IncludeNativeLibrariesForSelfExtract=true
+    - name: Build Only (Non-Release)
+      if: '!startsWith(github.ref, "refs/tags/")'
+      run: dotnet build src/StockSentinel/StockSentinel.csproj -c Release
+
+    - name: Build and Publish (Release)
+      if: startsWith(github.ref, 'refs/tags/')
+      run: dotnet publish src/StockSentinel/StockSentinel.csproj -c Release -r ${{ matrix.runtime }} --self-contained true -p:PublishSingleFile=true -p:UseAppHost=true -p:IncludeNativeLibrariesForSelfExtract=true -o ./publish/${{ matrix.runtime }}
+
+    - name: Create Release Archive
+      if: startsWith(github.ref, 'refs/tags/')
+      run: |
+        cd ./publish/${{ matrix.runtime }}
+        if [ "${{ matrix.runtime }}" = "win-x64" ]; then
+          7z a ../../StockSentinel-${{ matrix.runtime }}.zip *
+        else
+          tar -czf ../../StockSentinel-${{ matrix.runtime }}.tar.gz *
+        fi
+      shell: bash
+
+    - name: Upload Release Assets
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/upload-artifact@v4
+      with:
+        name: release-assets-${{ matrix.runtime }}
+        path: |
+          StockSentinel-${{ matrix.runtime }}.zip
+          StockSentinel-${{ matrix.runtime }}.tar.gz
+        retention-days: 1
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Download All Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        pattern: release-assets-*
+        merge-multiple: true
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          StockSentinel-*.zip
+          StockSentinel-*.tar.gz
+        generate_release_notes: true
+        draft: false
+        prerelease: false
