@@ -67,8 +67,6 @@ public class MailService : IMailService
 
         mailMessage.To.Add(_targetEmailAddress);
 
-        Console.WriteLine($"[Sending Email] Subject: {subject}, To: {_targetEmailAddress.Address}");
-
         await _smtpClient.SendMailAsync(mailMessage);
     }
 }

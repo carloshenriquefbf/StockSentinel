@@ -26,8 +26,6 @@ public class ApiService : IApiService
 
     public async Task<StockQuote?> GetStockQuoteAsync(string ticker)
     {
-        Console.WriteLine($"[Requesting] Ticker: {ticker}...");
-
         string endpoint = $"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker}&apikey={_apiKey}";
 
         var response = await _httpClient.GetAsync(endpoint);
@@ -50,8 +48,6 @@ public class ApiService : IApiService
         {
             throw new InvalidOperationException($"Invalid price format for ticker: {ticker}");
         }
-
-        Console.WriteLine($"[Response] Ticker: {symbol}, Price: {price}");
 
         return new StockQuote
         {
