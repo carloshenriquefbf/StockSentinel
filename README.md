@@ -48,6 +48,15 @@ chmod +x StockSentinel
 - Sends email when price hits buy/sell thresholds
 - Continues monitoring until stopped (Ctrl+C)
 
+## Currency Display
+Note: Prices are displayed without currency symbols due to Alpha Vantage API limitations that don't provide currency information in their responses. The actual currency depends on the stock exchange:
+
+- Brazilian stocks (e.g. PETR4.SA) are priced in BRL
+- US stocks (e.g. IBM) are priced in USD
+- Other international stocks follow their respective local currencies
+
+Please be aware of the actual currency when interpreting price alerts.
+
 ## Building from Source
 
 If you want to build the project yourself:
@@ -55,7 +64,9 @@ If you want to build the project yourself:
 ```bash
 git clone https://github.com/carloshenriquefbf/StockSentinel.git
 cd StockSentinel
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:UseAppHost=true
+dotnet publish -c Release -r ${PLATFORM} --self-contained true -p:PublishSingleFile=true -p:UseAppHost=true
 ```
 
-The executable will be in `src/StockSentinel/bin/Release/net9.0/win-x64/publish/`
+Replace `${PLATFORM}` with your target platform (e.g., `win-x64`, `linux-x64`, `osx-x64`).
+
+The executable will be in `src/StockSentinel/bin/Release/net9.0/${PLATFORM}/publish/`
