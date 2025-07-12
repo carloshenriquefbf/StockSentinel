@@ -1,9 +1,12 @@
-﻿using Xunit;
-using Moq;
-using Inoa.Services;
+﻿using System.Net;
+
 using Inoa.Models;
-using System.Net;
+using Inoa.Services;
+
+using Moq;
 using Moq.Protected;
+
+using Xunit;
 
 namespace Inoa.Tests;
 

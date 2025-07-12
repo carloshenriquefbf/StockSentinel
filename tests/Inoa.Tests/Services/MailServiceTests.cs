@@ -1,7 +1,10 @@
+using System.Net.Mail;
+
 using Inoa.Interfaces;
 using Inoa.Services;
+
 using Moq;
-using System.Net.Mail;
+
 using Xunit;
 
 namespace Inoa.Tests.Services;

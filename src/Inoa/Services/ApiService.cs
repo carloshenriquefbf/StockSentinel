@@ -1,6 +1,7 @@
-using Inoa.Models;
-using Inoa.Interfaces;
 using System.Text.Json;
+
+using Inoa.Interfaces;
+using Inoa.Models;
 
 namespace Inoa.Services;
 
