@@ -18,7 +18,6 @@ public class InoaTests
         _mockHttpMessageHandler = new Mock<HttpMessageHandler>();
         _httpClient = new HttpClient(_mockHttpMessageHandler.Object);
 
-        // Set up environment variable for testing
         Environment.SetEnvironmentVariable("API_KEY", "test-api-key");
 
         _apiService = new ApiService(_httpClient);

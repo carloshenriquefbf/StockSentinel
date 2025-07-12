@@ -1,4 +1,5 @@
 ﻿using DotNetEnv;
+using Inoa.Interfaces;
 using Inoa.Services;
 
 namespace Inoa
@@ -17,10 +18,9 @@ namespace Inoa
 
             var ticker = args[0];
 
-            var httpClient = new HttpClient();
-            var ApiService = new ApiService(httpClient);
+            IApiService apiService = new ApiService();
 
-            await ApiService.GetStockQuoteAsync(ticker);
+            await apiService.GetStockQuoteAsync(ticker);
         }
     }
 }

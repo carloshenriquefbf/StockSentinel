@@ -1,12 +1,20 @@
 using Inoa.Models;
+using Inoa.Interfaces;
 using System.Text.Json;
 
 namespace Inoa.Services;
 
-public class ApiService
+public class ApiService : IApiService
 {
     private readonly HttpClient _httpClient;
     private readonly string _apiKey;
+
+    public ApiService()
+    {
+        _httpClient = new HttpClient();
+        _apiKey = Environment.GetEnvironmentVariable("API_KEY")
+                  ?? throw new InvalidOperationException("API_KEY not set.");
+    }
 
     public ApiService(HttpClient httpClient)
     {
