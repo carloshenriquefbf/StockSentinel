@@ -19,8 +19,21 @@ namespace Inoa
             var ticker = args[0];
 
             IApiService apiService = new ApiService();
+            IMailService mailService = new MailService();
 
-            await apiService.GetStockQuoteAsync(ticker);
+            var stockQuote = await apiService.GetStockQuoteAsync(ticker);
+
+            if (stockQuote != null)
+            {
+                string subject = $"Stock Quote for {stockQuote.Symbol}";
+                string body = $"The current price of {stockQuote.Symbol} is {stockQuote.Price:C}.";
+                await mailService.SendEmailAsync(subject, body);
+                Console.WriteLine("Email sent successfully.");
+            }
+            else
+            {
+                throw new InvalidOperationException($"Could not retrieve stock quote for {ticker}.");
+            }
         }
     }
 }
