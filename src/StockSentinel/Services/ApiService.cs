@@ -1,9 +1,9 @@
 using System.Text.Json;
 
-using Inoa.Interfaces;
-using Inoa.Models;
+using StockSentinel.Interfaces;
+using StockSentinel.Models;
 
-namespace Inoa.Services;
+namespace StockSentinel.Services;
 
 public class ApiService : IApiService
 {

@@ -1,22 +1,22 @@
 ﻿using System.Net;
 
-using Inoa.Models;
-using Inoa.Services;
-
 using Moq;
 using Moq.Protected;
 
+using StockSentinel.Models;
+using StockSentinel.Services;
+
 using Xunit;
 
-namespace Inoa.Tests;
+namespace StockSentinel.Tests;
 
-public class InoaTests
+public class StockSentinelTests
 {
     private readonly Mock<HttpMessageHandler> _mockHttpMessageHandler;
     private readonly HttpClient _httpClient;
     private readonly ApiService _apiService;
 
-    public InoaTests()
+    public StockSentinelTests()
     {
         _mockHttpMessageHandler = new Mock<HttpMessageHandler>();
         _httpClient = new HttpClient(_mockHttpMessageHandler.Object);

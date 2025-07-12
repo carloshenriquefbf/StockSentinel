@@ -1,6 +1,6 @@
 using System.Net.Mail;
 
-namespace Inoa.Interfaces;
+namespace StockSentinel.Interfaces;
 
 public interface ISmtpClientWrapper
 {

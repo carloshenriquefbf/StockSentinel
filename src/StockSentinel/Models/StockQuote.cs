@@ -1,4 +1,4 @@
-namespace Inoa.Models;
+namespace StockSentinel.Models;
 
 public class StockQuote
 {

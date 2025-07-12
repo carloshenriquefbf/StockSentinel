@@ -1,6 +1,6 @@
-using Inoa.Models;
+using StockSentinel.Models;
 
-namespace Inoa.Interfaces;
+namespace StockSentinel.Interfaces;
 
 public interface IApiService
 {

@@ -2,9 +2,9 @@ using System.Data;
 using System.Net;
 using System.Net.Mail;
 
-using Inoa.Interfaces;
+using StockSentinel.Interfaces;
 
-namespace Inoa.Services;
+namespace StockSentinel.Services;
 
 public class MailService : IMailService
 {

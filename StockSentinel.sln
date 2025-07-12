@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inoa", "src\Inoa\Inoa.csproj", "{B93909E8-2676-4D4D-86CD-5E803D292ABD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSentinel", "src\StockSentinel\StockSentinel.csproj", "{B93909E8-2676-4D4D-86CD-5E803D292ABD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inoa.Tests", "tests\Inoa.Tests\Inoa.Tests.csproj", "{FAF31FEE-E168-4682-858D-78F118D47FFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockSentinel.Tests", "tests\StockSentinel.Tests\StockSentinel.Tests.csproj", "{FAF31FEE-E168-4682-858D-78F118D47FFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-namespace Inoa.Interfaces;
+namespace StockSentinel.Interfaces;
 
 public interface IMailService
 {

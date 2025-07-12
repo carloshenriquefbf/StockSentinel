@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Inoa\Inoa.csproj" />
+    <ProjectReference Include="..\..\src\StockSentinel\StockSentinel.csproj" />
   </ItemGroup>
 
 </Project>

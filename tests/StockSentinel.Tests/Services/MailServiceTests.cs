@@ -1,13 +1,13 @@
 using System.Net.Mail;
 
-using Inoa.Interfaces;
-using Inoa.Services;
-
 using Moq;
+
+using StockSentinel.Interfaces;
+using StockSentinel.Services;
 
 using Xunit;
 
-namespace Inoa.Tests.Services;
+namespace StockSentinel.Tests.Services;
 
 public class MailServiceTests
 {

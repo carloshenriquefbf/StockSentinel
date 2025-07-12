@@ -1,9 +1,10 @@
 ﻿using DotNetEnv;
-using Inoa.Interfaces;
-using Inoa.Models;
-using Inoa.Services;
 
-namespace Inoa
+using StockSentinel.Interfaces;
+using StockSentinel.Models;
+using StockSentinel.Services;
+
+namespace StockSentinel
 {
     public class Program
     {
