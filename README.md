@@ -2,9 +2,13 @@
 
 A console app that monitors B3 stock prices using the Alpha Vantage API and sends email alerts when buy/sell thresholds are reached.
 
+## Download
+
+Download the latest release from the [Releases](https://github.com/carloshenriquefbf/StockSentinel/releases) page or build from source.
+
 ## Setup
 
-1. Create a `.env` file:
+1. Create a `.env` file in the same folder as `StockSentinel.exe`:
 ```env
 API_KEY=your_api_key # https://www.alphavantage.co/support/#api-key
 SMTP_SERVER=smtp.gmail.com
@@ -14,18 +18,26 @@ SMTP_PASSWORD=your-app-password # https://myaccount.google.com/apppasswords
 TARGET_MAIL_ADDRESS=recipient@gmail.com
 ```
 
-2. Build and run:
-```bash
-dotnet build
-dotnet run <ticker> <sellPrice> <buyPrice>
+2. Your folder structure should look like this:
+```
+├── StockSentinel.exe
+└── .env
 ```
 
 ## Usage
 
+Open a terminal window in the folder containing the executable for your platform (e.g. Windows) and run:
+
 ```bash
-dotnet run PETR4.SA 22.67 22.59
+StockSentinel.exe PETR4.SA 22.67 22.59
 ```
 
+If on MacOS or Linux, make sure to give execute permissions:
+```bash
+chmod +x StockSentinel
+```
+
+**Parameters:**
 - **ticker**: Stock symbol (e.g., PETR4.SA)
 - **sellPrice**: Send sell alert when price >= this value
 - **buyPrice**: Send buy alert when price <= this value
@@ -34,4 +46,16 @@ dotnet run PETR4.SA 22.67 22.59
 
 - Checks stock price every 5 minutes
 - Sends email when price hits buy/sell thresholds
-- Continues monitoring until stopped
+- Continues monitoring until stopped (Ctrl+C)
+
+## Building from Source
+
+If you want to build the project yourself:
+
+```bash
+git clone https://github.com/carloshenriquefbf/StockSentinel.git
+cd StockSentinel
+dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:UseAppHost=true
+```
+
+The executable will be in `src/StockSentinel/bin/Release/net9.0/win-x64/publish/`
